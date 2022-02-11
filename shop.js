@@ -129,6 +129,9 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
       // Disable decrement button
       $(this).siblings('.adjustDiv').children('.adjustDown').prop('disabled', true);
 
+      // Feedback when adding to basket
+      alert(`Added ${newQuantity} ${productDetails[productID].name} to basket!`);
+
       refreshBasket();
     }
 
