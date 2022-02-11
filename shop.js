@@ -61,6 +61,9 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
       document.getElementById('cookieMessage').style.display = 'none';
     }
     initProducts(redraw);
+
+    // Get the contents of the basket from the cookie
+    basket = JSON.parse(getCookie("basket"));
   }
 
 
@@ -89,8 +92,8 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
     }
     elements = document.getElementsByClassName("addToBasket");
     for(eIn = 0; eIn < elements.length; eIn++){
-      elements[eIn].removeEventListener("click",increment);
-      elements[eIn].addEventListener("click",increment);
+      elements[eIn].removeEventListener("click",addToBasket);
+      elements[eIn].addEventListener("click",addToBasket);
     }
   }
 
@@ -102,35 +105,53 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
   }
 
   /*
-  * Change the quantity of the product with productID
+  * Add product to basket
   */
-  function changeQuantity(productID, newQuantity){
-    basket[productID] = newQuantity;
-    if(newQuantity == 0)
-      delete basket[productID];
-    document.querySelector(".buyInput[data-num='"+productID+"']").value = newQuantity;
-    refreshBasket();
+  function addToBasket(){
+
+    // Get info of the product to be added to basket
+    const productID = $(this).siblings('.adjustDiv').find('.buyInput').attr('data-num');
+    const newQuantity = $(this).siblings('.adjustDiv').find('.buyInput').val();
+
+    /*
+      Only add to basket if new quantity if greater than 0
+      TODO: disable button when quantity if 0
+    */
+    if (newQuantity > 0) {
+
+      // Add new quantity to basket
+      basket[productID] = (basket[productID] ?? 0) + parseInt(newQuantity);
+
+      // Reset value in the input
+      $(this).siblings('.adjustDiv').find('.buyInput').val(0);
+
+      refreshBasket();
+    }
+
   }
 
   //Add 1 to the quantity
   function increment(ev){
+
+    // Get product id
     var thisID = ev.target.parentElement.closest(".card__content").getAttribute("data-num");
-    if(basket[thisID] === undefined){
-      basket[thisID] = 0;
-    }
-    changeQuantity(thisID,parseInt(basket[thisID])+1);
+
+    // Change value in the input field
+    let currentValue = parseInt($(".buyInput[data-num='"+thisID+"']").val());
+    $(".buyInput[data-num='"+thisID+"']").val(currentValue + 1);
   }
 
   //Subtract 1 from the quantity
   function decrement(ev){
+
+    // Get product id
     var thisID = ev.target.parentElement.closest(".card__content").getAttribute("data-num");
-    if(basket[thisID] === undefined){
-      changeQuantity(thisID,0);
-    }else{
-      if(basket[thisID] > 0){
-        changeQuantity(thisID,parseInt(basket[thisID])-1);
-      }
-    }
+
+    // Change value in the input field
+    let currentValue = parseInt($(".buyInput[data-num='"+thisID+"']").val());
+
+    // Can not have negative quantity
+    if (currentValue > 0) $(".buyInput[data-num='"+thisID+"']").val(currentValue - 1);
   }
 
   function filterFunction(a){
