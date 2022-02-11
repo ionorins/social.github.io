@@ -61,3 +61,17 @@ h1{
 .navbar-brand {
     font-weight: 700;
 }
+
+#cookieMessage {
+    width: 100%;
+}
+
+#cookieMessage h1 {
+    font-size: 2rem;
+    text-align: start;
+}
+
+#cookieMessage p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}

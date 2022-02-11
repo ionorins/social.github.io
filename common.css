@@ -257,11 +257,6 @@ html{
     /* display: none; */
 }
 
-#acceptCookies{
-    font-size: 100%;
-    margin-top: 2rem;
-    color: green;
-}
 p{
     font-size: 150%;
 }
