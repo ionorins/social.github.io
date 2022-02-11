@@ -15,8 +15,8 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
 <div class="shop-product-details shop-product-price" data-field="price" data-num="[EVEGPRODUCT#]"></div>
 <div class="shop-product-details shop-product-units" data-field="units" data-num="[EVEGPRODUCT#]"></div>
 <div class="shop-product-buying" data-num="[EVEGPRODUCT#]">
-<div class="productBasketDiv"><button class="addToBasket">Add to Basket</button>
-<div class="adjustDiv"><button class="btn adjustDown">-</button>
+<div class="productBasketDiv"><button class="addToBasket" disabled>Add to Basket</button>
+<div class="adjustDiv"><button class="btn adjustDown" disabled>-</button>
 <input class="buyInput" data-num="[EVEGPRODUCT#]" min="0" value="0" type="number">
 <button class="btn adjustUp">+</button></div></div></div></div></div>`;
 
@@ -113,10 +113,8 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
     const productID = $(this).siblings('.adjustDiv').find('.buyInput').attr('data-num');
     const newQuantity = $(this).siblings('.adjustDiv').find('.buyInput').val();
 
-    /*
-      Only add to basket if new quantity if greater than 0
-      TODO: disable button when quantity if 0
-    */
+
+    //  Only add to basket if new quantity if greater than 0
     if (newQuantity > 0) {
 
       // Add new quantity to basket
@@ -124,6 +122,12 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
 
       // Reset value in the input
       $(this).siblings('.adjustDiv').find('.buyInput').val(0);
+
+      // Disable add to basket button
+      $(this).prop('disabled', true);
+
+      // Disable decrement button
+      $(this).siblings('.adjustDiv').children('.adjustDown').prop('disabled', true);
 
       refreshBasket();
     }
@@ -139,6 +143,12 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
     // Change value in the input field
     let currentValue = parseInt($(".buyInput[data-num='"+thisID+"']").val());
     $(".buyInput[data-num='"+thisID+"']").val(currentValue + 1);
+
+    // Enable add to basket button
+    $(this).closest('.productBasketDiv').find('.addToBasket').prop('disabled', false);
+
+    // Enable decrement button
+    $(this).siblings('.adjustDown').prop('disabled', false);
   }
 
   //Subtract 1 from the quantity
@@ -151,7 +161,16 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
     let currentValue = parseInt($(".buyInput[data-num='"+thisID+"']").val());
 
     // Can not have negative quantity
-    if (currentValue > 0) $(".buyInput[data-num='"+thisID+"']").val(currentValue - 1);
+    if (currentValue > 0) {
+      $(".buyInput[data-num='"+thisID+"']").val(currentValue - 1);
+
+      // Disable add to basket and decrement buttons if new value is 0
+      if ($(".buyInput[data-num='"+thisID+"']").val() === '0') {
+        $(this).closest('.productBasketDiv').find('.addToBasket').prop('disabled', true);
+        $(this).prop('disabled', true);
+      }
+    }
+    
   }
 
   function filterFunction(a){
