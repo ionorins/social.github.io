@@ -1,6 +1,5 @@
 /*Common CSS to be shown on all versions (mobile/desktop)*/
 .productBasketDiv{
-    width: 8em;
 }
 
 button{
@@ -10,8 +9,9 @@ button{
 }
 
 .shop-product-img img{
-    width: 8rem;
-    height: 8rem;
+    width: 100%;
+    height: 200px;
+    border-radius: 16px 16px 0px 0px;
     object-fit: cover;
     vertical-align: middle;
 }
@@ -103,10 +103,6 @@ html{
     padding-bottom:2rem;
     padding-left:2rem;
     padding-right:2rem;
-}
-
-.navbar{
-    height: 4em;
 }
 
 .navbar,li ul {
@@ -322,4 +318,3 @@ form.customerDetails button{
 .checkoutList tr:last-child td:first-child{
     text-align: right;
 }
-

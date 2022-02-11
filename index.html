@@ -1,80 +1,86 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8"/>
-  <link rel="stylesheet" media="screen and (max-width: 600px)" href="shopmobile.css">
-  <link rel="stylesheet" media="screen and (min-width: 601px)" href="shop.css">
+  <meta charset="UTF-8" />
+  <!-- <link rel="stylesheet" media="screen and (max-width: 600px)" href="shopmobile.css"> -->
+  <link rel="stylesheet" href="shop.css">
   <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="colours.css">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Bootstrap CDN -->
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <!-- Bootstrap script bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 
   <!-- JQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
   <script src="products.js"></script>
   <script src="shop.js"></script>
   <title>E-Veg Shop</title>
 </head>
+
 <body>
-    <div class="hero"><div class="title">E-Veg</div>
-    <div class="navbar">
-      <div class="toggle-wrapper">
-      <a href="#" class="toggle-button">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </a>
-    </div>
-      <div class="navbar-links">
-        <ul>
-          <li><a href="#"><span>Contact</span></a></li>
-          <li><a id="search-link" href="#"><span>Search</span></a></li>
-          <li><a href="#"><span>About</span></a></li>
-          <li class="spacer">&nbsp;</li>
-          <li class="welcome"><a>Welcome Test User</a></li>
-          <li><a class="basket" href="checkout.html"><span>
-            Checkout</span></a></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="search-bar">
-      <input type="text" id="searchbox"></input>
-      <div class="searchbuttons">
-        <a id="searchbutton" href="#">
-          <span>
-            search
-            </span>
-        </a>
-        <a id="closesearchbutton" href="#">
-
-          <span>
-            close
-          </span>
-        </a>
-        
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">E-Veg</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" aria-current="page" href="#">Contact</a>
+          <a class="nav-link" id="search-link" href="#">Search</a>
+          <a class="nav-link" href="#">About</a>
+          <a class="nav-link basket" href="checkout.html"><span>
+            Checkout</span></a>
         </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="search-bar">
+    <input type="text" id="searchbox"></input>
+    <div class="searchbuttons">
+      <a id="searchbutton" href="#">
+        <span>
+          search
+        </span>
+      </a>
+      <a id="closesearchbutton" href="#">
+
+        <span>
+          close
+        </span>
+      </a>
+
     </div>
   </div>
-    <div class="productList">
+  </div>
+  <div class="container">
+    <div class="productList row"></div>
+  </div>
 
-    </div>
 
-    <div class="about">
-      <div>&copy; 2021 InterVeg Coventry Ltd.</div>
-      <div>Fresh produce from the Midland's green countryside.</div>
-    </div>
-    <div id="cookieMessage"><h1>This site uses cookies</h1>
+  <div class="about">
+    <div>&copy; 2021 InterVeg Coventry Ltd.</div>
+    <div>Fresh produce from the Midland's green countryside.</div>
+  </div>
+  <div id="cookieMessage">
+    <h1>This site uses cookies</h1>
     <p>By using this site, you are consenting to our use of cookies</p>
     <p>We use cookies purely for the functionality of the website - to store the products that are in your basket.</p>
     <p>For further details of how we use your data, please see our privacy policy.</p>
     <p><a id="acceptCookies">Accept</a></p>
-    </div>
+  </div>
 </body>
+
 </html>

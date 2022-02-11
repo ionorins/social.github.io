@@ -8,28 +8,34 @@ let basket = {};
 //The adjustDown and adjustUp buttons have their behaviour specified below, but you can change this if you like
 //To change the quantity of a product, change the value of the input (with the class of buyInput), you can then recalculate the basket with refreshBasket()
 //Or you can adjust the basket object via javascript and call updateQuantityInputs() and refreshBasket()
-var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
-<div class="shop-product-details shop-product-title card__title" data-field="title" data-num="[EVEGPRODUCT#]"></div>
+var cardTemplate = `<div class='col-12 col-md-6 col-xl-3 p-4'><div class="card" data-num="[EVEGPRODUCT#]">
 <div class="card__content" data-num="[EVEGPRODUCT#]">
 <div class="shop-product-details shop-product-img" data-field="img" data-num="[EVEGPRODUCT#]"></div>
+<div class="shop-product-details shop-product-title card__title" data-field="title" data-num="[EVEGPRODUCT#]"></div>
+<div class="d-flex justify-content-center mb-3">
 <div class="shop-product-details shop-product-price" data-field="price" data-num="[EVEGPRODUCT#]"></div>
 <div class="shop-product-details shop-product-units" data-field="units" data-num="[EVEGPRODUCT#]"></div>
+</div>
 <div class="shop-product-buying" data-num="[EVEGPRODUCT#]">
-<div class="productBasketDiv"><button class="addToBasket" disabled>Add to Basket</button>
-<div class="adjustDiv"><button class="btn adjustDown" disabled>-</button>
-<input class="buyInput" data-num="[EVEGPRODUCT#]" min="0" value="0" type="number">
-<button class="btn adjustUp">+</button></div></div></div></div></div>`;
+<div class="productBasketDiv d-flex flex-column">
+<div class="adjustDiv"><button class="btn btn-primary adjustDown" disabled>-</button>
+<div class='input-group'>
+<input class="buyInput input-group-text" data-num="[EVEGPRODUCT#]" min="0" value="0" type="number">
+</div>
+<button class="btn btn-primary adjustUp">+</button></div>
+<button class="btn btn-primary addToBasket mt-4" disabled>Add to Basket</button>
+</div></div></div></div></div>`;
 
   function init(){
-    const toggleButton = document.getElementsByClassName('toggle-button')[0];
+    // const toggleButton = document.getElementsByClassName('toggle-button')[0];
     const hero = document.getElementsByClassName('hero')[0];
     const navbarLinks = document.getElementsByClassName('navbar-links')[0];
 
     //When the toggle button is pressed (if visible by the screen size, the menu is shown)
-    toggleButton.addEventListener('click',()=>{
-      navbarLinks.classList.toggle('active');
-      hero.classList.toggle('menuactive');
-    });
+    // toggleButton.addEventListener('click',()=>{
+    //   navbarLinks.classList.toggle('active');
+    //   hero.classList.toggle('menuactive');
+    // });
 
     const searchBar = document.getElementsByClassName('search-bar')[0];
     //Show the search bar when the search link is pressed
@@ -223,7 +229,7 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
           element.innerHTML = "<span>£"+(productDetails[num].price/100).toFixed(2)+"</span>";
           break;
         case "units":
-          element.innerHTML = "<span>"+productDetails[num].packsize + " " + productDetails[num].units+"</span>";
+          element.innerHTML = "<span>- "+productDetails[num].packsize + " " + productDetails[num].units+"</span>";
           break;
       }
 
