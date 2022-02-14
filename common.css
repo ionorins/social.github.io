@@ -278,7 +278,6 @@ a:visited{
 form.customerDetails {
 background: #f9f9f9;
 border: 1px solid #c1c1c1;
-width: 50%;
 }
 
 form.customerDetails label {
@@ -294,22 +293,71 @@ form.customerDetails button{
 }
 
 .checkoutList{
-    width:50%;
-    margin-bottom: 4rem;
-    margin-top: 2rem;
+    width:100%;
+    margin: 2rem 0;
 }
 
 .checkoutList{
     text-align: center;
 }
 
-.checkoutList tr td:nth-child(4){
-    font-weight: bold;
-}
-.checkoutList tr:last-child{
-    font-weight: bold;
+
+.checkout-header .title {
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
 }
 
-.checkoutList tr:last-child td:first-child{
-    text-align: right;
+.checkout-products-container,
+#customerDetails {
+    width: 90%;
+    margin: 32px auto;
+}
+
+.checkout-products-container {
+    background: #ededed;
+    border-radius: 16px;
+}
+
+.checkout-products-container h2 {
+    align-self: start;
+}
+
+@media (min-width: 576px) {
+    .checkout-products-container,
+    #customerDetails {
+        width: 400px;
+    }
+}
+
+.basket-product-quantity {
+    width: 48px;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+}
+
+.remove-product {
+    font-size: 24px;
+    padding-bottom: 8px;
+}
+
+.product-total {
+    font-weight: 700;
+}
+
+.total-price {
+    font-weight: 700;
+    align-self: end;
+    font-size: 24px;
+}
+
+/* https://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-input-s-spin-box */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
 }
