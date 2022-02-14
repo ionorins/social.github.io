@@ -274,19 +274,16 @@ a:visited{
     color: var(--colour-5);
 }
 
-
-form.customerDetails {
-background: #f9f9f9;
-border: 1px solid #c1c1c1;
+form.customerDetails input {
+    border-radius: 8px;
 }
 
 form.customerDetails label {
+    font-weight: 600;
 display: block;
 }
 
-form.customerDetails input {
-width: 80%;
-}
+
 form.customerDetails button{
     margin-top:20px;
     display: block;
@@ -360,4 +357,13 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield; /* Firefox */
+}
+
+#customerDetails {
+    background: #ededed;
+    border-radius: 16px;
+}
+
+#customerDetails .buttons-container {
+    margin: 32px 0;
 }
