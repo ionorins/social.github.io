@@ -1,6 +1,7 @@
 let productDetails = {};
 let searchStr = "";
 let basket = {};
+let filters = {fruit: false, veg: false, other: false};
 //Each product is based on a 'card'; a box that contains information about that product.
 //You can change the card template here. The [EVEGPRODUCT#] will always be subsituted for 
 //the element in the imagesArr (see fruit.js)
@@ -45,16 +46,16 @@ function init() {
     });
 
     //Close the search bar
-    document.getElementById('searchbutton').addEventListener('click', () => {
-        searchStr = document.getElementById('searchbox').value;
-        redraw();
+    document.getElementById('searchbox').addEventListener('input', (e) => {
+        searchStr = e.target.value;
+        redraw(filterFunction);
     });
 
     //Close the search bar
     document.getElementById('closesearchbutton').addEventListener('click', () => {
         searchStr = "";
         searchBar.classList.remove('active');
-        redraw();
+        redraw(filterFunction);
     });
 
     //Close the cookies message
@@ -67,6 +68,18 @@ function init() {
         document.getElementById('cookieMessage').style.display = 'none';
     }
     initProducts(redraw);
+
+    document.querySelector(".fruit").addEventListener('click', (e) => {
+        filter('fruit');
+    });
+
+    document.querySelector(".veg").addEventListener('click', (e) => {
+        filter('veg');
+    });
+
+    document.querySelector(".other").addEventListener('click', (e) => {
+        filter('other');
+    });
 
     // Get the contents of the basket from the cookie
     basket = JSON.parse(getCookie("basket"));
@@ -209,13 +222,32 @@ function sortFunction(a, b) {
     return a.price > b.price;
 }
 
+function filter(fruitType) {
+    filters[fruitType] = !filters[fruitType];
+    if (filters[fruitType]) {
+        document.querySelector("." + fruitType).classList.add("active");
+    } else {
+        document.querySelector("." + fruitType).classList.remove("active");
+    }
+
+    let allFalse = Object.values(filters)[0] || Object.values(filters)[1] || Object.values(filters)[2];
+
+    if(!allFalse)
+        redraw(() => true);
+    else
+        redraw((a) => filters[a.type]);
+}
+
 //Redraw all products based on the card template
-function redraw() {
+function redraw(filterRule) {
 
     //Reset the product list (there are possibly more efficient ways of doing this, but this is simplest)
     document.querySelector('.productList').innerHTML = '';
 
-    var shownProducts = productDetails.filter(filterFunction);
+    if (filterRule === undefined) {
+        filterRule = filterFunction;
+    }
+    var shownProducts = productDetails.filter(filterRule);
 
     shownProducts.sort(sortFunction);
 
