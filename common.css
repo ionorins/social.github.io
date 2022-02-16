@@ -367,3 +367,55 @@ input[type=number] {
 #customerDetails .buttons-container {
     margin: 32px 0;
 }
+
+.chatbot {
+    width: 80%;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+.chatbot-button div {
+    background: #0d6efd;
+    border-radius: 100px;
+    width: 64px;
+    height: 64px;
+}
+
+.chatbot-content {
+    border-radius: 16px;
+    height: 400px;
+    background: #d1d1d1;
+    box-shadow: 0px 0px 4px 2px rgb(150 150 150 / 25%);
+}
+
+.chatbot-content input {
+    height: 48px;
+    border-radius: 100px;
+    padding-left: 16px;
+    border: none;
+    box-shadow: 0 0 0 2px #0d6efd;
+}
+
+.chatbot-content input:focus {
+    border: none;   
+    outline: none;
+}
+
+.chatbot-button img {
+    height: 40px;
+}
+
+.chatbot-content p {
+    background: white;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+@media (min-width: 576px) {
+    .chatbot {
+        width: 400px;
+    }
+}
