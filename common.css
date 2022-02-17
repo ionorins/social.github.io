@@ -2,6 +2,10 @@
 .productBasketDiv{
 }
 
+input:invalid:required {
+    color: red;
+}
+
 button{
     background-color: var(--colour-2);
     color:var(--colour-1);
@@ -79,7 +83,6 @@ html{
     --colour-5: hsl(var(--colour-5-h), var(--colour-5-s), var(--colour-5-l));
     --colour-6: hsl(var(--colour-6-h), var(--colour-6-s), var(--colour-6-l));
     --colour-7: hsl(var(--colour-7-h), var(--colour-7-s), var(--colour-7-l));
-
 }
 
 
