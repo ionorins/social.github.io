@@ -19,7 +19,7 @@ function resetListeners() {
     e.preventDefault();
     
     // Go back to basket
-    window.location.pop();
+    window.history.go(-1);
 
   })
 }
